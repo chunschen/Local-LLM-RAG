@@ -9,8 +9,8 @@ from langchain.chains import create_retrieval_chain
 
 ## Data Ingestion
 
-data_Path= "data\TheArtOfWar_SunTzu.txt"
-loader=TextLoader(data_Path, encoding="utf-8")
+DATA_PATH = "data\TheArtOfWar_SunTzu.txt"
+loader=TextLoader(DATA_PATH, encoding="utf-8")
 text_documents=loader.load()
 
 #Split the text into documents
@@ -19,9 +19,11 @@ documents=text_splitter.split_documents(text_documents)
 
 ## Vector Embedding And Vector Store
 ## We need a embedding model to embed sentences and paragrphs to a embedding vector.
-## A embedding model that embeds sentences is needed, such as sentence transformers listed in https://huggingface.co/sentence-transformers
-sentence_embedding_model = "sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2"
-ef = HuggingFaceEmbeddings(model_name = sentence_embedding_model)
+## A embedding model that embeds sentences is needed, such as sentence transformers listed
+## in https://huggingface.co/sentence-transformers
+
+SENTENCE_EMBEDDING_MODEL = "sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2"
+ef = HuggingFaceEmbeddings(model_name = SENTENCE_EMBEDDING_MODEL)
 db = Chroma.from_documents(documents, ef)
 db.persist()
 
@@ -34,17 +36,17 @@ print(f"Content of retrived_documents: {retrived_documents}")
 
 ## load local LLM: mistral-instruct
 
-n_gpu_layers = -1  # -1: trying to use all available gpu layers
-n_ctx = 2000  # context size of the model
-n_batch = 512  # Should be between 1 and n_ctx
+N_GPU_LAYERS = -1  # -1: trying to use all available gpu layers
+N_CTX = 2000  # context size of the model
+N_BATCH = 512  # Should be between 1 and n_ctx
 
-llm = LlamaCpp(  model_path ="F:\\unsloth\\unsloth\model-unsloth.Q4_K_M.gguf", # the path of the local llm model
-                n_gpu_layers = n_gpu_layers,
-                 n_batch=n_batch,
-                 n_ctx=n_ctx,
-                 max_tokens=200,
-                 verbose=True,
-                 thread=12
+llm = LlamaCpp(  model_path = 'F:\\unsloth\\unsloth\\model-unsloth.Q4_K_M.gguf', # the path of the local llm model
+                 #n_gpu_layers = N_GPU_LAYERS,
+                 n_batch = N_BATCH,
+                 n_ctx = N_CTX,
+                 max_tokens=  200,
+                 verbose = True,
+                 thread = 12
                  )
 
 #no_context = llm.invoke("What are five essentials for victory")
@@ -63,14 +65,12 @@ Answer the following question based only on the provided context:
 Question: {input}""")
 
 # Chain
-def format_docs(docs):
-    return "\n\n".join(doc.page_content for doc in docs)
 
 document_chain = create_stuff_documents_chain(llm, prompt)
 retrieval_chain = create_retrieval_chain(retriever, document_chain)
 
 # Run
-question = "What are the title of the first 3 chapters of the book: the art of war?"
+QUESTION = "What are the title of the first 3 chapters of the book: the art of war?"
 
-response = retrieval_chain.invoke({"input": question})
+response = retrieval_chain.invoke({"input": QUESTION})
 print(response["answer"])
