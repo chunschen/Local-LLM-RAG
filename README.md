@@ -9,18 +9,18 @@ After installation, I start the llama3 (8B) locally by issuing the following com
 ```ollama run llama3:latest```
 The ollama will pull the specified model to your local machine and start the it in command line:
 
-```C:\Users\14254>ollama run llama3:latest```
-```pulling manifest```
-```pulling 6a0746a1ec1a... 100% ▕████████████████████████████████████████████████████████▏ 4.7 GB```
-```pulling 4fa551d4f938... 100% ▕████████████████████████████████████████████████████████▏  12 KB```
-```pulling 8ab4849b038c... 100% ▕████████████████████████████████████████████████████████▏  254 B```
-```pulling 577073ffcc6c... 100% ▕████████████████████████████████████████████████████████▏  110 B```
-```pulling 3f8eb4da87fa... 100% ▕████████████████████████████████████████████████████████▏  485 B```
-```verifying sha256 digest```
-```writing manifest```
-```removing any unused layers```
-```success```
-```>>> Send a message (/? for help)```
+```C:\Users\14254>ollama run llama3:latest
+pulling manifest
+pulling 6a0746a1ec1a... 100% ▕████████████████████████████████████████████████████████▏ 4.7 GB
+pulling 4fa551d4f938... 100% ▕████████████████████████████████████████████████████████▏  12 KB
+pulling 8ab4849b038c... 100% ▕████████████████████████████████████████████████████████▏  254 B
+pulling 577073ffcc6c... 100% ▕████████████████████████████████████████████████████████▏  110 B
+pulling 3f8eb4da87fa... 100% ▕████████████████████████████████████████████████████████▏  485 B
+verifying sha256 digest
+writing manifest
+removing any unused layers
+success
+>>> Send a message (/? for help)```
 
 
 ## Libraries
