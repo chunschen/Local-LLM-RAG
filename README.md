@@ -2,7 +2,7 @@
 
 This personal project involves utilizing an open-source LLM model combined with local documents to enhance the model's knowledge and understanding of the document content.
 
-## Start llama3 locally with Ollama
+## Start llama3 locally with Ollama (Microsoft windows 11)
 ### CLI Example
 If Ollama is not installed,go to https://ollama.com/ to download and install it on your computer.
 
@@ -59,9 +59,10 @@ In summary:
 Now, go enjoy the blue sky and appreciate the science behind it!
 ```
 ### API example:
-Ollama binds `127.0.0.1:11434` by default, our local RAG app can interact with the local LLM by sending requests to the localhost(127.0.0.1) and port 11434.
-Here is an example of using `curl` to connect to Ollama's `generate` api for thee llama3 model:  
-`curl http://localhost:11434/api/generate -d "{\"model\": \"llama3:latest\", \"keep_alive\": 0, \"prompt\": \"Why is the sky blue?\", \"stream\": false}"`
+By default, Ollama binds to `127.0.0.1:11434`, allowing our local RAG application to communicate with the local LLM by sending requests to localhost
+(127.0.0.1) on port 11434.  
+Here is an example of using `curl` to connect to Ollama's `generate` API for the llama3 model:  
+`curl http://localhost:11434/api/generate -d "{\"model\": \"llama3:latest\", \"keep_alive\": 0, \"prompt\": \"Why is the sky blue?\", \"stream\": false}"`  
 The response is in JSON format:  
 ```
 C:\Users\14254>curl http://localhost:11434/api/generate -d "{\"model\": \"llama3:latest\", \"keep_alive\": \"3m\", \"prompt\": \"Why is the sky blue?\", \"stream\": false}"
