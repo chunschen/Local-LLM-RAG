@@ -40,11 +40,11 @@ N_GPU_LAYERS = -1  # -1: trying to use all available gpu layers
 N_CTX = 2000  # context size of the model
 N_BATCH = 512  # Should be between 1 and n_ctx
 
-llm = LlamaCpp(  model_path = 'F:\\unsloth\\unsloth\\model-unsloth.Q4_K_M.gguf', # the path of the local llm model
+llm = LlamaCpp(  model_path = 'F:\\unsloth\\unsloth\\meta-llama-3-8b-instruct-imat-Q4_K_M.gguf', # the path of the local llm model
                  #n_gpu_layers = N_GPU_LAYERS,
                  n_batch = N_BATCH,
                  n_ctx = N_CTX,
-                 max_tokens=  200,
+                 max_tokens = 200,
                  verbose = True,
                  thread = 12
                  )
@@ -56,13 +56,13 @@ llm = LlamaCpp(  model_path = 'F:\\unsloth\\unsloth\\model-unsloth.Q4_K_M.gguf',
 
 # prompt
 prompt = ChatPromptTemplate.from_template("""
-Answer the following question based only on the provided context:
+[inst]Answer the following question based only on the provided context:[/inst]
 
 <context>
 {context}
 </context>
 
-Question: {input}""")
+Q: {input} A:""") 
 
 # Chain
 
